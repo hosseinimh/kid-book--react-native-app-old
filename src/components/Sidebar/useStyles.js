@@ -36,12 +36,29 @@ const useStyles = () => {
 
   const tabsContainer = {flexGrow: 1, marginTop: 50};
 
+  const tabContainer = {
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingLeft: 35,
+    paddingRight: 13,
+    borderRadius: 8,
+    marginTop: 15,
+  };
+
+  const tabIcon = {width: 25, height: 25};
+
+  const tabText = [styles.pBold, {fontSize: 15, paddingRight: 15}];
+
   return {
     container,
     profileImage,
     profileName,
     viewProfile,
     tabsContainer,
+    tabContainer,
+    tabIcon,
+    tabText,
   };
 };
 

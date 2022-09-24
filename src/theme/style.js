@@ -12,3 +12,8 @@ export const p = {
   fontFamily: 'Vazir',
   fontSize: 18,
 };
+
+export const pBold = {
+  fontFamily: 'Vazir-Bold',
+  fontSize: 18,
+};

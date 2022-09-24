@@ -1,9 +1,19 @@
-export const screens = {
-  homeScreen: 'کتاب داستان صوتی کودکان',
-  notificationsScreen: 'اعلان‌ها',
+export const tabScreens = {
+  home: 'کتاب داستان صوتی کودکان',
+  search: 'جستجو',
+  notifications: 'اعلان‌ها',
+  settings: 'تنظیمات',
 };
 
-export const tabs = {
+export const tabProfile = {
   profileName: 'کاربر',
   viewProfile: 'مشاهده پروفایل',
+};
+
+export const tabLinks = {
+  home: 'خانه',
+  search: 'جستجو',
+  notifications: 'اعلان‌ها',
+  settings: 'تنظیمات',
+  logout: 'خروج',
 };

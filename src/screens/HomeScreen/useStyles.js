@@ -27,7 +27,14 @@ const useStyles = () => {
     marginTop: 40,
   };
 
-  const screenTitle = [
+  const backButton = {
+    width: 25,
+    height: 25,
+    tintColor: colors.text,
+    marginTop: 35,
+  };
+
+  const tabScreenTitle = [
     styles.h1,
     {
       color: colors.text,
@@ -72,8 +79,8 @@ const useStyles = () => {
     container,
     closeContainer,
     closeButton,
-    closeButton,
-    screenTitle,
+    backButton,
+    tabScreenTitle,
     listContainer,
     listImage,
     listTitle,

@@ -1,78 +1,91 @@
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 import images from '../../theme/images';
-import {tabs} from '../../constants/strings';
+import {tabProfile} from '../../constants/strings';
 import useStyles from './useStyles';
 
+import {TABS} from '../../constants';
+import {setTabAction} from '../../state/layout/layoutActions';
+import {utils} from '../../utils';
+import {useTheme} from '../../hooks';
+
 const Sidebar = () => {
-  const [currentTab, setCurrentTab] = useState('Home');
+  const [currentTab, setCurrentTab] = useState(TABS.Home);
+  const layoutState = useSelector(state => state.layoutReducer);
   const styles = useStyles();
+  const dispatch = useDispatch();
+  const {colors} = useTheme();
+
+  const onTab = tab => {
+    dispatch(setTabAction(tab));
+  };
+
+  useEffect(() => {
+    setCurrentTab(layoutState.tab);
+  }, [layoutState]);
+
+  const renderTabButton = (tab, image) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          if (tab === TABS.Logout) {
+          } else {
+            onTab(tab);
+          }
+        }}>
+        <View
+          style={[
+            {
+              backgroundColor:
+                currentTab == tab ? colors.sidebarText : colors.transparent,
+            },
+            styles.tabContainer,
+          ]}>
+          <Image
+            source={image}
+            style={[
+              {
+                tintColor:
+                  currentTab == tab
+                    ? colors.sidebarBackground
+                    : colors.sidebarText,
+              },
+              styles.tabIcon,
+            ]}></Image>
+          <Text
+            style={[
+              {
+                color:
+                  currentTab == tab
+                    ? colors.sidebarBackground
+                    : colors.sidebarText,
+              },
+              styles.tabText,
+            ]}>
+            {utils.tabText(tab)}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <Image source={images.profile} style={styles.profileImage}></Image>
-      <Text style={styles.profileName}>{tabs.profileName}</Text>
+      <Text style={styles.profileName}>{tabProfile.profileName}</Text>
       <TouchableOpacity>
-        <Text style={styles.viewProfile}>{tabs.viewProfile}</Text>
+        <Text style={styles.viewProfile}>{tabProfile.viewProfile}</Text>
       </TouchableOpacity>
       <View style={styles.tabsContainer}>
-        {TabButton(currentTab, setCurrentTab, 'Home', images.home)}
-        {TabButton(currentTab, setCurrentTab, 'Search', images.search)}
-        {TabButton(
-          currentTab,
-          setCurrentTab,
-          'Notifications',
-          images.notifications,
-        )}
-        {TabButton(currentTab, setCurrentTab, 'Settings', images.settings)}
+        {renderTabButton(TABS.Home, images.home)}
+        {renderTabButton(TABS.Search, images.search)}
+        {renderTabButton(TABS.Notifications, images.notifications)}
+        {renderTabButton(TABS.Settings, images.settings)}
       </View>
-      <View>
-        {TabButton(currentTab, setCurrentTab, 'LogOut', images.logout)}
-      </View>
+      <View>{renderTabButton(TABS.Logout, images.logout)}</View>
     </View>
-  );
-};
-
-const TabButton = (currentTab, setCurrentTab, title, image) => {
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        if (title == 'LogOut') {
-        } else {
-          setCurrentTab(title);
-        }
-      }}>
-      <View
-        style={{
-          flexDirection: 'row-reverse',
-          alignItems: 'center',
-          paddingVertical: 8,
-          backgroundColor: currentTab == title ? 'white' : 'transparent',
-          paddingLeft: 35,
-          paddingRight: 13,
-          borderRadius: 8,
-          marginTop: 15,
-        }}>
-        <Image
-          source={image}
-          style={{
-            width: 25,
-            height: 25,
-            tintColor: currentTab == title ? '#5359D1' : 'white',
-          }}></Image>
-
-        <Text
-          style={{
-            fontSize: 15,
-            fontWeight: 'bold',
-            paddingRight: 15,
-            color: currentTab == title ? '#5359D1' : 'white',
-          }}>
-          {title}
-        </Text>
-      </View>
-    </TouchableOpacity>
   );
 };
 

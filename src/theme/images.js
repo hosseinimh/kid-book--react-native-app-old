@@ -7,6 +7,7 @@ import logout from '../assets/images/logout.png';
 import menu from '../assets/images/menu.png';
 import close from '../assets/images/close.png';
 import photo from '../assets/images/photo.jpg';
+import arrowRight from '../assets/images/arrow-right.png';
 
 const images = {
   profile,
@@ -18,6 +19,7 @@ const images = {
   menu,
   close,
   photo,
+  arrowRight,
 };
 
 export default images;

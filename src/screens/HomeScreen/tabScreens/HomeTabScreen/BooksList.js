@@ -1,20 +1,20 @@
 import React from 'react';
-import {Text, Image, FlatList, Animated} from 'react-native';
+import {Text, Image, FlatList, View} from 'react-native';
 
-import images from '../../theme/images';
-import stories from '../../constants/stories';
-import useStyles from './useStyles';
+import images from '../../../../theme/images';
+import stories from '../../../../constants/stories';
+import useStyles from '../../useStyles';
 
 const BooksList = () => {
   const styles = useStyles();
 
   const renderItem = ({item}) => {
     return (
-      <Animated.View>
+      <View>
         <Image source={images.photo} style={styles.listImage}></Image>
         <Text style={styles.listTitle}>{item.title}</Text>
         <Text style={styles.listText}>{item.text}</Text>
-      </Animated.View>
+      </View>
     );
   };
 

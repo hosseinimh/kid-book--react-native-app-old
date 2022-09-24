@@ -9,6 +9,7 @@ const DarkTheme = {
     notification: 'rgb(0,0,0)',
     sidebarText: 'rgb(0,0,0)',
     sidebarBackground: '#5359D1',
+    transparent: 'transparent',
   },
 };
 

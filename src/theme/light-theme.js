@@ -9,6 +9,7 @@ const LightTheme = {
     notification: 'rgb(0,0,0)',
     sidebarText: 'rgb(255,255,255)',
     sidebarBackground: '#5359D1',
+    transparent: 'transparent',
   },
 };
 
