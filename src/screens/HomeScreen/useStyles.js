@@ -3,6 +3,7 @@ import * as styles from '../../theme/style';
 
 const useStyles = () => {
   const {colors} = useTheme();
+  const {FONTS, SIZES} = styles;
 
   const container = {
     flexGrow: 1,
@@ -16,7 +17,9 @@ const useStyles = () => {
     paddingBottom: 20,
   };
 
-  const closeContainer = {
+  const headerContainer = {
+    marginTop: SIZES.padding1,
+    marginBottom: SIZES.padding2,
     alignSelf: 'flex-end',
   };
 
@@ -24,7 +27,6 @@ const useStyles = () => {
     width: 20,
     height: 20,
     tintColor: colors.text,
-    marginTop: 40,
   };
 
   const backButton = {
@@ -35,7 +37,7 @@ const useStyles = () => {
   };
 
   const tabScreenTitle = [
-    styles.h1,
+    FONTS.h1,
     {
       color: colors.text,
       paddingTop: 20,
@@ -57,7 +59,7 @@ const useStyles = () => {
   };
 
   const listTitle = [
-    styles.h4,
+    FONTS.h3,
     {
       color: colors.text,
       paddingTop: 10,
@@ -67,17 +69,23 @@ const useStyles = () => {
   ];
 
   const listText = [
-    styles.p,
+    FONTS.body3,
     {
       color: colors.text,
-      paddingBottom: 5,
+      paddingBottom: 10,
       textAlign: 'right',
     },
   ];
 
+  const divider = {
+    height: 1,
+    width: '100%',
+    backgroundColor: colors.border,
+  };
+
   return {
     container,
-    closeContainer,
+    headerContainer,
     closeButton,
     backButton,
     tabScreenTitle,
@@ -85,6 +93,7 @@ const useStyles = () => {
     listImage,
     listTitle,
     listText,
+    divider,
   };
 };
 

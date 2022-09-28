@@ -1,3 +1,4 @@
 import useTheme from './useTheme';
+import useDownloader from './useDownloader';
 
-export {useTheme};
+export {useTheme, useDownloader};

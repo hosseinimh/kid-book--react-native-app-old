@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import images from '../../theme/images';
 import {tabProfile} from '../../constants/strings';
 import useStyles from './useStyles';
-
 import {TABS} from '../../constants';
 import {setTabAction} from '../../state/layout/layoutActions';
 import {utils} from '../../utils';

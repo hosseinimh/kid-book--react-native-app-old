@@ -1,20 +1,24 @@
 import React from 'react';
-import {Text, Image, FlatList, View} from 'react-native';
+import {Text, Image, FlatList, View, TouchableOpacity} from 'react-native';
 
 import images from '../../../../theme/images';
 import stories from '../../../../constants/stories';
 import useStyles from '../../useStyles';
+import {useTheme} from '../../../../hooks';
 
-const BooksList = () => {
+const BooksList = ({navigation}) => {
   const styles = useStyles();
 
   const renderItem = ({item}) => {
     return (
-      <View>
-        <Image source={images.photo} style={styles.listImage}></Image>
-        <Text style={styles.listTitle}>{item.title}</Text>
-        <Text style={styles.listText}>{item.text}</Text>
-      </View>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Story', {id: item.id})}>
+        <View>
+          <Image source={images.photo} style={styles.listImage}></Image>
+          <Text style={styles.listTitle}>{item.title}</Text>
+          <Text style={styles.listText}>{item.text}</Text>
+        </View>
+      </TouchableOpacity>
     );
   };
 
@@ -24,8 +28,15 @@ const BooksList = () => {
       renderItem={renderItem}
       keyExtractor={item => item.id}
       contentContainerStyle={styles.listContainer}
+      ItemSeparatorComponent={ItemDivider}
     />
   );
+};
+
+const ItemDivider = () => {
+  const styles = useStyles();
+
+  return <View style={styles.divider} />;
 };
 
 export default BooksList;

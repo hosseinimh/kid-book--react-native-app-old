@@ -8,6 +8,7 @@ import menu from '../assets/images/menu.png';
 import close from '../assets/images/close.png';
 import photo from '../assets/images/photo.jpg';
 import arrowRight from '../assets/images/arrow-right.png';
+import volume from '../assets/images/volume.png';
 
 const images = {
   profile,
@@ -20,6 +21,7 @@ const images = {
   close,
   photo,
   arrowRight,
+  volume,
 };
 
 export default images;

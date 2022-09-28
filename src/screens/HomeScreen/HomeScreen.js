@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   BackHandler,
+  View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -16,10 +17,11 @@ import useStyles from './useStyles';
 import {HomeTabScreen, AboutTabScreen} from './tabScreens';
 import {TAB_SCREENS, TABS} from '../../constants';
 import {setTabAction} from '../../state/layout/layoutActions';
+import {SIZES} from '../../theme/style';
 
 const DURATION = 300;
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [tabScreen, setTabScreen] = useState(TAB_SCREENS.Home);
 
@@ -70,14 +72,16 @@ const HomeScreen = () => {
   };
 
   BackHandler.addEventListener('hardwareBackPress', function () {
-    if (showMenu) {
-      onCloseMenu();
+    if (navigation.isFocused()) {
+      if (showMenu) {
+        onCloseMenu();
 
-      return true;
-    } else if (tabScreen !== TABS.Home) {
-      showHomTabScreen();
+        return true;
+      } else if (tabScreen !== TABS.Home) {
+        showHomTabScreen();
 
-      return true;
+        return true;
+      }
     }
 
     return false;
@@ -101,7 +105,7 @@ const HomeScreen = () => {
     }).start();
 
     Animated.timing(closeButtonOffset, {
-      toValue: !showMenu ? -20 : 0,
+      toValue: !showMenu ? 0 : 0,
       duration: DURATION,
       useNativeDriver: true,
     }).start();
@@ -111,16 +115,16 @@ const HomeScreen = () => {
 
   const renderHeader = () => {
     return (
-      <Animated.View
-        style={{
-          transform: [
-            {
-              translateY: closeButtonOffset,
-            },
-          ],
-        }}>
-        <Animated.View>
-          <Animated.View style={styles.closeContainer}>
+      <>
+        <Animated.View
+          style={{
+            transform: [
+              {
+                translateY: closeButtonOffset,
+              },
+            ],
+          }}>
+          <Animated.View style={styles.headerContainer}>
             <TouchableOpacity
               onPress={() => {
                 tabScreen === TAB_SCREENS.Home
@@ -142,18 +146,20 @@ const HomeScreen = () => {
                 }></Image>
             </TouchableOpacity>
           </Animated.View>
+        </Animated.View>
+        <View>
           <Text style={styles.tabScreenTitle}>
             {utils.tabScreenTitle(tabScreen)}
           </Text>
-        </Animated.View>
-      </Animated.View>
+        </View>
+      </>
     );
   };
 
   const renderTabScreen = () => {
     switch (tabScreen) {
       case TAB_SCREENS.Home:
-        return <HomeTabScreen />;
+        return <HomeTabScreen navigation={navigation} />;
       case TAB_SCREENS.Search:
         return <AboutTabScreen />;
       case TAB_SCREENS.Notifications:
@@ -166,7 +172,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <BaseScreen>
+    <BaseScreen homeScreen={true}>
       <Sidebar />
       <Animated.View
         style={[

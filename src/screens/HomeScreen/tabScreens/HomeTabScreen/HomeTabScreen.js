@@ -6,7 +6,7 @@ import {setThemeAction} from '../../../../state/layout/layoutActions';
 import BooksList from './BooksList';
 import {THEMES} from '../../../../constants';
 
-const HomeTabScreen = () => {
+const HomeTabScreen = ({navigation}) => {
   const [theme, setTheme] = useState(THEMES.Light);
   const dispatch = useDispatch();
   const layoutState = useSelector(state => state.layoutReducer);
@@ -28,7 +28,7 @@ const HomeTabScreen = () => {
           Theme
         </Text>
       </TouchableOpacity>
-      <BooksList />
+      <BooksList navigation={navigation} />
     </>
   );
 };

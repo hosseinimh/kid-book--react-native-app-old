@@ -1,7 +1,8 @@
 import React from 'react';
 import {Provider} from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
 
-import {HomeScreen} from './src/screens';
+import {MainStack} from './src/navigation';
 import configureStore from './src/state/store';
 
 const store = configureStore();
@@ -9,7 +10,9 @@ const store = configureStore();
 const App = () => {
   return (
     <Provider store={store}>
-      <HomeScreen />
+      <NavigationContainer>
+        <MainStack />
+      </NavigationContainer>
     </Provider>
   );
 };

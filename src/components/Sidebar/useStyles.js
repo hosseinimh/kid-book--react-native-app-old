@@ -3,6 +3,7 @@ import * as styles from '../../theme/style';
 
 const useStyles = () => {
   const {colors} = useTheme();
+  const {FONTS} = styles;
 
   const container = {
     padding: 15,
@@ -17,7 +18,7 @@ const useStyles = () => {
   };
 
   const profileName = [
-    styles.h4,
+    FONTS.h4,
     {
       color: colors.sidebarText,
       marginTop: 20,
@@ -26,7 +27,7 @@ const useStyles = () => {
   ];
 
   const viewProfile = [
-    styles.p,
+    FONTS.body3,
     {
       marginTop: 6,
       color: colors.sidebarText,
@@ -48,7 +49,7 @@ const useStyles = () => {
 
   const tabIcon = {width: 25, height: 25};
 
-  const tabText = [styles.pBold, {fontSize: 15, paddingRight: 15}];
+  const tabText = [FONTS.body3, {fontSize: 15, paddingRight: 15}];
 
   return {
     container,

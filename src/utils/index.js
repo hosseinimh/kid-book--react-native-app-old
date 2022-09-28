@@ -1,3 +1,4 @@
 import utils from './utils';
+import SoundPlayer from './SoundPlayer';
 
-export {utils};
+export {utils, SoundPlayer};
